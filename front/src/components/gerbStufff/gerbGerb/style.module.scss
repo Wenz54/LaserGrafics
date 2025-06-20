@@ -1,0 +1,540 @@
+/* Base styles and resets */
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box; // Essential for modern layouts
+}
+
+html, body, #root {
+    height: 100%; // Ensure full height for sticky footer
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; // Ensure body takes at least full viewport height
+    line-height: 1.6;
+    color: #333;
+    overflow-x: hidden; // Prevent horizontal scrollbar
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+main {
+    flex-grow: 1; // Allows main content to expand and push footer down
+    display: flex;
+    flex-direction: column;
+    align-items: center; // Center main content horizontally
+    padding: 20px; // Add some general padding
+}
+
+/* Global active class (changed color to match your brand) */
+.active {
+    border-color: #97020E !important; // Use !important to override other button backgrounds if necessary
+    box-shadow: 0 0 12px rgba(151, 2, 14, 0.5) !important; // More prominent shadow
+    background-color: #fcebeb !important; // Light red background for active, as per your old style
+    
+    // Ensure text color remains readable or changes as per your design
+    p, figcaption {
+        color: #333 !important; // Keep text dark for contrast
+    }
+}
+
+/* Page Wrapper */
+.pageWrapper { // Renamed from gerb1Page for consistency
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Main Content Area */
+.mainContent { // Added for consistency
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 80px; // Adjust for fixed header height
+    padding: 20px; // General padding
+}
+
+/* Product Section - The main layout for the product page */
+.productSection {
+    display: flex;
+    flex-direction: column; // Default to column on small screens
+    gap: 40px; // Space between image and details columns
+    max-width: 1200px; // Max width for content
+    width: 100%;
+    padding: 20px;
+
+    @media (min-width: 992px) { // Desktop layout (two columns)
+        flex-direction: row; // Switch to row for larger screens
+        justify-content: center; // Center content if less than max-width
+        align-items: flex-start; // Align items to the top
+    }
+}
+
+.imageColumn {
+    flex: 1 1 50%; // Take up 50% width, flexible
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 10px; // Padding around the image
+
+    .productImage { // Renamed from .container img
+        width: 100%;
+        max-width: 550px; // Max width as per original intention
+        height: auto; // Maintain aspect ratio
+        object-fit: contain; // Ensure entire image is visible
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1); // Subtle shadow for the image
+        border-radius: 8px;
+    }
+}
+
+.detailsColumn { // New wrapper for text content
+    flex: 1 1 50%; // Take up 50% width, flexible
+    display: flex;
+    flex-direction: column;
+    gap: 20px; // Space between blocks within the details column
+    padding: 10px;
+    text-align: center; // Center text by default
+
+    @media (min-width: 992px) {
+        text-align: left; // Align text to left on larger screens
+    }
+}
+
+/* Title Block */
+.titleBlock { // Replaces .nazvanie for consistent naming
+    .productName { // Replaces .nazvanie h3
+        font-size: clamp(30px, 5vw, 48px); // Larger for main title
+        background-color: black;
+        color: white;
+        padding: 8px 15px;
+        display: inline-block; // To make background color fit content
+        margin-bottom: 10px; // Space below name
+        line-height: 1.2;
+        box-decoration-break: clone;
+        -webkit-box-decoration-break: clone;
+    }
+
+    .productCategory { // Replaces .nazvanie h4
+        background-color: #97020E;
+        color: white;
+        padding: 8px 15px;
+        font-size: clamp(20px, 4vw, 36px);
+        font-weight: lighter;
+        display: inline-block;
+        line-height: 1.2;
+        box-decoration-break: clone;
+        -webkit-box-decoration-break: clone;
+    }
+}
+
+/* Features Block */
+.featuresBlock { // Replaces .harakteristiki
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; // Center them
+    gap: 15px; // Space between features
+    margin-top: 15px;
+
+    @media (min-width: 992px) {
+        justify-content: flex-start;
+    }
+
+    .featureItem { // Replaces .sindzi_4moshnik
+        background-color: black;
+        color: white;
+        font-size: clamp(16px, 3vw, 24px);
+        padding: 8px 15px;
+        transition: background-color 0.2s ease;
+        white-space: nowrap; // Keep text on one line
+        border-radius: 5px;
+
+        &:hover {
+            background-color: #97020E;
+            cursor: pointer;
+        }
+    }
+}
+
+/* Description Block */
+.descriptionBlock { // Replaces .about_product
+    margin-top: 20px;
+
+    .productDescription { // Replaces .about_product p
+        font-size: clamp(16px, 2.5vw, 18px);
+        line-height: 1.8;
+        margin-bottom: 25px; // Space after description
+        text-align: left; // Always left-align long text for readability
+    }
+
+    .descriptionLink { // Replaces .about_product p a
+        background-color: #97020E;
+        color: white;
+        padding: 2px 5px;
+        font-weight: lighter;
+        display: inline-block;
+        box-decoration-break: clone;
+        -webkit-box-decoration-break: clone;
+    }
+
+    .chooseOptionTitle { // Replaces .about_product h3
+        font-size: clamp(20px, 3.5vw, 28px);
+        margin-bottom: 15px; // Space before options
+        text-align: center; // Center title
+        @media (min-width: 992px) {
+            text-align: left; // Align to left on large screens
+        }
+    }
+}
+
+/* Interactive Block - contains quantity, options, price, upload, add to cart */
+.interactiveBlock { // Replaces .interactivePartWrapper and centers its content
+    display: flex;
+    flex-direction: column;
+    gap: 30px; // Space between interactive components
+    align-items: center; // Center items horizontally
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    width: 100%; // Take full width of parent column
+
+    @media (min-width: 992px) {
+        align-items: flex-start; // Align items to the left
+    }
+}
+
+/* Quantity Selector */
+.itemQuantity {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    .quantityButton { // Replaces .itemQuality button and .minus/.plus
+        border: none;
+        width: 45px;
+        height: 45px;
+        font-size: 36px;
+        cursor: pointer;
+        transition: background-color 0.1s linear, color 0.1s linear;
+        border-radius: 5px;
+        background-color: #97020E;
+        color: white;
+
+        &:hover {
+            background-color: #000;
+        }
+    }
+
+    .quantityDisplay { // Replaces .itemQuality h3
+        font-size: clamp(24px, 4vw, 36px);
+        min-width: 50px;
+        text-align: center;
+    }
+}
+
+/* Choose Osnastka (Options) */
+.chooseOsnastka {
+    display: flex;
+    flex-wrap: wrap; // Allow buttons to wrap
+    justify-content: center; // Center buttons
+    gap: 20px; // Space between buttons
+    width: 100%;
+
+    @media (min-width: 992px) {
+        justify-content: flex-start; // Align to start
+    }
+
+    .chooseOsnastkaButton { // Consolidated button styles
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: white;
+        border: 2px solid #eee; // Subtle border
+        border-radius: 8px;
+        padding: 15px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        text-align: center;
+        width: clamp(140px, 30vw, 220px); // Responsive width for options
+        height: auto;
+        min-height: 180px;
+
+        img {
+            width: 80px; // Fixed size for product image within button
+            height: 80px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+
+        .osnastkaName {
+            font-size: clamp(14px, 2vw, 18px);
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .optionPrice, .optionSize { // Combines figcaption and other p tags
+            font-size: clamp(14px, 2vw, 18px);
+            color: black;
+            font-weight: normal;
+        }
+
+        &.active {
+            .optionPrice, .optionSize { // Hide price and size for active item if desired by gerbGerb design
+                display: none;
+            }
+        }
+
+        &:hover {
+            box-shadow: 3px 3px 3px #97020E;
+            transform: scale(1.03); // Slight scale on hover
+        }
+    }
+}
+
+/* Price Row */
+.priceRow {
+    display: flex;
+    flex-wrap: wrap; // Allow prices to wrap on small screens
+    align-items: baseline; // Align text by their baseline
+    gap: 10px;
+    font-size: clamp(24px, 4vw, 36px);
+    font-weight: bold;
+    margin-top: 15px;
+    justify-content: center; // Center prices
+    width: 100%;
+
+    @media (min-width: 992px) {
+        justify-content: flex-start; // Align to left on large screens
+    }
+
+    .unitPriceDisplay, .osnastkaPriceDisplay, .totalPriceDisplay { // Replaces priceStamp, priceOsn
+        color: #333;
+        white-space: nowrap; // Prevent wrapping for individual price parts
+    }
+
+    .multiplicationSymbol, .equalsSymbol, .quantityInPrice {
+        font-size: clamp(20px, 3vw, 30px);
+        color: #666;
+    }
+}
+
+/* File Upload Zone */
+.uploadInstructions {
+    margin-top: 30px;
+    font-size: clamp(18px, 3vw, 24px);
+    text-align: center;
+    width: 100%;
+}
+
+.dropZone {
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+    padding: 40px;
+    text-align: center;
+    font-size: clamp(16px, 2.5vw, 20px);
+    color: #888;
+    cursor: pointer;
+    width: 100%;
+    max-width: 450px;
+    margin-top: 15px;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+
+    &:hover {
+        border-color: #97020E;
+        background-color: #f0f0f0;
+    }
+}
+
+.uploadMessage {
+    margin-top: 15px;
+    font-size: clamp(14px, 2.2vw, 16px);
+    color: #555;
+    text-align: center;
+    padding: 0 10px;
+}
+
+/* Order Buttons */
+.orderButtons { // Replaces .orderBtns
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    width: 100%;
+
+    .addToCartButton { // Replaces .addToBasket
+        border: none;
+        padding: 15px 30px;
+        font-size: clamp(20px, 3.5vw, 28px);
+        cursor: pointer;
+        transition: background-color 0.1s linear, color 0.1s linear;
+        border-radius: 8px;
+        background-color: #97020E;
+        color: white;
+        width: 100%;
+        max-width: 350px; // Limit max width for the button
+
+        &:hover {
+            background-color: #000;
+        }
+    }
+}
+
+
+/* Media Queries for fine-tuning responsiveness */
+
+// For Tablets (e.g., portrait mode)
+@media (max-width: 991px) {
+    .mainContent {
+        padding-top: 70px;
+    }
+    .productSection {
+        padding: 15px;
+        gap: 30px;
+    }
+
+    .imageColumn {
+        padding: 0; // Remove extra padding for image column
+    }
+    .imageColumn .productImage {
+        max-width: 90%; // Allow image to take more width on small screens
+    }
+
+    .detailsColumn {
+        padding: 0; // Remove extra padding for details column
+        gap: 15px;
+    }
+
+    .titleBlock .productName,
+    .titleBlock .productCategory {
+        padding: 6px 12px;
+    }
+
+    .featuresBlock .featureItem {
+        padding: 6px 12px;
+    }
+
+    .descriptionBlock .productDescription {
+        text-align: center; // Center description on smaller screens
+    }
+
+    .interactiveBlock {
+        gap: 25px;
+        padding: 15px;
+    }
+
+    .itemQuantity .quantityButton {
+        width: 40px;
+        height: 40px;
+        font-size: 30px;
+    }
+    .itemQuantity .quantityDisplay {
+        font-size: clamp(20px, 3.5vw, 30px);
+    }
+    .priceRow {
+        font-size: clamp(20px, 3.5vw, 30px);
+    }
+    .priceRow .multiplicationSymbol,
+    .priceRow .equalsSymbol,
+    .priceRow .quantityInPrice {
+        font-size: clamp(18px, 3vw, 25px);
+    }
+
+    .chooseOsnastka .chooseOsnastkaButton {
+        width: clamp(120px, 45vw, 180px); // More flexible for small screens
+        padding: 10px;
+        min-height: 150px;
+        img {
+            width: 70px;
+            height: 70px;
+        }
+        .osnastkaName, .optionPrice, .optionSize {
+            font-size: clamp(12px, 2.5vw, 16px);
+        }
+    }
+    .dropZone {
+        padding: 30px;
+        font-size: clamp(14px, 3.5vw, 18px);
+    }
+    .addToCartButton {
+        font-size: clamp(18px, 4.5vw, 24px);
+        padding: 12px 20px;
+    }
+}
+
+// For Mobile Phones
+@media (max-width: 767px) {
+    .mainContent {
+        padding-top: 60px;
+        padding: 10px;
+    }
+    .productSection {
+        padding: 10px;
+        gap: 20px;
+    }
+    .imageColumn .productImage {
+        max-width: 100%;
+    }
+    .detailsColumn {
+        gap: 10px;
+    }
+
+    .titleBlock .productName {
+        font-size: clamp(24px, 6vw, 36px);
+    }
+    .titleBlock .productCategory {
+        font-size: clamp(18px, 5vw, 28px);
+    }
+
+    .featuresBlock .featureItem {
+        font-size: clamp(14px, 3.5vw, 20px);
+        padding: 5px 10px;
+    }
+
+    .descriptionBlock .productDescription {
+        font-size: clamp(14px, 3vw, 16px);
+        line-height: 1.6;
+    }
+    .descriptionLink {
+        display: inline-block; // To make background fit content
+    }
+    .descriptionBlock .chooseOptionTitle {
+        font-size: clamp(18px, 4.5vw, 24px);
+    }
+
+    .interactiveBlock {
+        gap: 20px;
+        padding: 10px;
+    }
+    .chooseOsnastka {
+        gap: 10px;
+    }
+    .chooseOsnastka .chooseOsnastkaButton {
+        width: clamp(100px, 48vw, 160px); // Adjusted for better two-column layout on mobile
+        padding: 8px;
+        min-height: 120px;
+        img {
+            width: 60px;
+            height: 60px;
+        }
+        .osnastkaName, .optionPrice, .optionSize {
+            font-size: clamp(12px, 2.8vw, 14px);
+        }
+    }
+    .dropZone {
+        padding: 25px;
+        font-size: clamp(12px, 3vw, 16px);
+    }
+    .addToCartButton {
+        font-size: clamp(16px, 4vw, 20px);
+        padding: 10px 15px;
+    }
+}

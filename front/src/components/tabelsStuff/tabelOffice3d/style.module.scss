@@ -1,0 +1,478 @@
+/* Base styles and resets */
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box; // Essential for responsive design
+}
+
+html, body, #root {
+    height: 100%; // Make sure HTML, body, and root div take full height
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; // Ensures footer sticks to bottom
+    line-height: 1.6;
+    color: #333;
+    overflow-x: hidden; // Prevent horizontal scrollbar from overflow
+}
+
+a {
+    text-decoration: none;
+    color: inherit; // Inherit color by default, unless specific style is applied
+}
+
+main {
+    flex-grow: 1; // Allow main content to grow and push footer down
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 80px; // Adjust for fixed header height. Ensure this matches your Header's height.
+}
+
+.active {
+    background-color: #fcebeb; // Light red background for active state
+    border-color: #97020E;
+    box-shadow: 0 0 5px rgba(151, 2, 14, 0.5); // Highlight active state
+}
+
+/* Product Page Layout */
+.productPage { // Общий контейнер для всей страницы товара
+    width: 100%;
+    // Can add max-width and margin: 0 auto; if the whole page needs to be centered
+    // max-width: 1600px;
+    // margin: 0 auto;
+}
+
+/* Product Container (Image + Info) */
+.container {
+    display: flex;
+    flex-wrap: wrap; // Allow items to wrap to the next line on smaller screens
+    justify-content: center; // Center items horizontally when wrapped
+    align-items: flex-start; // Align items to the top
+    gap: 40px; // Space between the image and the text content
+    padding: 40px 20px; // Padding around the entire container
+    max-width: 1400px; // Limit overall width for readability on large screens
+    margin: 0 auto; // Center the container
+}
+
+.image {
+    width: clamp(300px, 45vw, 600px); // Responsive width: min 300px, max 600px, scales with viewport
+    height: auto; // Maintain aspect ratio
+    object-fit: contain; // Ensure the whole image is visible
+    flex-shrink: 0; // Prevent image from shrinking if space is tight
+}
+
+/* Product Info Section */
+.productInfoSection { // Wrapper for text content (nazvanie, harakteristiki, about_product)
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; // Allow text section to take remaining space
+    min-width: 300px; // Minimum width for the text content
+    max-width: 600px; // Max width for text block
+}
+
+.nazvanie {
+    margin-bottom: 20px; // Space below title
+    // Removed absolute positioning and fixed padding
+}
+
+.nazvanie h3 {
+    font-size: clamp(28px, 3.5vw, 40px); // Responsive font size
+    background-color: black;
+    color: white;
+    padding: 5px;
+    display: inline-block; // To make background fit content
+    box-decoration-break: clone; // For background on wrapped lines
+    -webkit-box-decoration-break: clone;
+}
+
+.nazvanie h4 {
+    background-color: #97020E;
+    color: white;
+    padding: 7px;
+    font-size: clamp(20px, 2.5vw, 30px); // Responsive font size
+    font-weight: lighter;
+    display: inline-block; // To make background fit content
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+}
+
+.harakteristiki {
+    display: flex;
+    flex-wrap: wrap; // Allow characteristics to wrap
+    gap: 10px; // Space between characteristic boxes
+    margin-bottom: 20px; // Space below characteristics
+    // Removed absolute positioning and fixed padding
+}
+
+.featureBox { // Renamed from .sindzi_4moshnik to a more general class
+    margin: 0px 5px; // Small margin between elements
+    background-color: black;
+    color: white;
+    font-size: clamp(16px, 1.8vw, 24px); // Responsive font size
+    padding: 5px 10px;
+    transition: all 0.2s ease;
+    white-space: nowrap; // Prevent text from wrapping inside the box
+    cursor: pointer; // Added if it's an interactive element
+}
+
+.featureBox:hover {
+    background-color: #97020E;
+}
+
+.about_product {
+    margin-bottom: 30px; // Space before interactive part
+    // Removed margin-top: 9%;
+}
+
+.about_product p {
+    padding-top: 5%; // Can remove or reduce if not needed
+    font-size: clamp(16px, 1.8vw, 22px); // Responsive font size
+    margin-bottom: 20px;
+}
+
+.about_product h3 {
+    font-size: clamp(20px, 2.2vw, 28px);
+    margin-bottom: 15px;
+}
+
+/* Interactive Part (Quantity, Options, Price, Add to Cart) */
+.interactivePartWrapper {
+    width: 100%; // Take full width within its flex container
+    max-width: 600px; // Align with the product info section
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; // Align items to the left
+    gap: 20px; // Space between sections
+    margin: 0 0 5% 29%; // Center horizontally and add bottom margin
+    // Removed fixed margin-left: 30% for better responsiveness
+    padding: 0 20px; // Add padding so content doesn't stick to edges on narrow screens
+}
+
+.itemQuality {
+    font-size: clamp(24px, 3vw, 30px);
+    display: flex;
+    align-items: center;
+    gap: 10px; // Space between buttons and quantity
+}
+
+.itemQuality button {
+    border: none;
+    width: clamp(40px, 5vw, 50px);
+    height: clamp(40px, 5vw, 50px);
+    font-size: clamp(30px, 4vw, 40px);
+    background-color: #97020E;
+    color: white;
+    cursor: pointer;
+    transition: all 0.1s linear;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // Removed duplicated styles for .minus and .plus
+}
+
+.itemQuality button:hover {
+    background-color: #000;
+}
+
+.itemQuality h3 {
+    padding: 0 15px;
+}
+
+.chooseOptions { // Renamed from .chooseOsnastka to .chooseOptions
+    padding: 10px 0; // Changed padding
+    display: flex;
+    flex-wrap: wrap; // Allow options to wrap
+    gap: 20px; // Space between option buttons
+    justify-content: flex-start; // Align options to the left
+    width: 100%;
+}
+
+.optionButton { // Renamed from .chooseOsnastka button
+    padding: 10px;
+    border: 1px solid #ddd;
+    background-color: white;
+    cursor: pointer;
+    transition: all 0.2s linear;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    width: clamp(120px, 15vw, 200px); // Responsive width for buttons
+    height: auto; // Let height adjust to content
+    min-height: 180px; // Ensure minimum height
+    max-width: 250px; // Max width as per original intention
+    // Removed specific id selectors (#professional1, #empty, etc.)
+}
+
+.optionButton:hover {
+    box-shadow: 3px 3px 3px #97020E;
+    transform: scale(1.03); // Slightly less aggressive scale
+}
+
+.optionButton img {
+    height: clamp(80px, 10vw, 120px); // Responsive image height
+    width: auto;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+
+.figcaption {
+    font-size: clamp(12px, 1.2vw, 16px);
+    color: #666;
+    margin-top: 5px;
+}
+
+/* Price Display */
+.priceRow {
+    display: flex;
+    align-items: baseline; // Align text at the baseline
+    gap: 10px; // Space between price parts
+    font-size: clamp(20px, 2.5vw, 25px);
+    font-weight: bold;
+    // Removed flex-direction: row, as display: flex already does this
+}
+
+.unitPrice, .totalPrice, .multiplySign { // Renamed from .priceStamp, .priceOsn
+    white-space: nowrap; // Prevent prices from wrapping
+}
+
+/* File Upload Zone */
+.dropZone {
+    border: 2px dashed #97020E;
+    padding: 30px;
+    text-align: center;
+    cursor: pointer;
+    background-color: #f9f9f9;
+    color: #555;
+    font-size: clamp(16px, 2vw, 20px);
+    transition: background-color 0.3s ease;
+    width: 100%;
+    position: relative; /* For the hidden input */
+
+    &:hover {
+        background-color: #eee;
+    }
+}
+
+.uploadMessage {
+    margin-top: 10px;
+    font-size: clamp(14px, 1.8vw, 18px);
+    color: #333;
+    text-align: left;
+    width: 100%;
+}
+
+.uploadedFilesContainer {
+    width: 100%;
+    margin-top: 20px;
+    background-color: #f0f0f0;
+    padding: 15px;
+    border-radius: 5px;
+
+    h4 {
+        font-size: clamp(16px, 2vw, 20px);
+        margin-bottom: 10px;
+        color: #333;
+    }
+}
+
+.uploadedFilesList {
+    list-style: none;
+    padding: 0;
+
+    li {
+        font-size: clamp(14px, 1.8vw, 16px);
+        margin-bottom: 5px;
+        color: #555;
+    }
+}
+
+/* Order Buttons */
+.orderBtns {
+    width: 100%;
+}
+
+.addToBasket { // Removed duplicated styles
+    border: none;
+    padding: 10px 20px;
+    width: clamp(200px, 25vw, 300px); // Responsive width
+    font-size: clamp(20px, 2.5vw, 30px);
+    background-color: #97020E;
+    color: white;
+    cursor: pointer;
+    transition: all 0.1s linear;
+    text-align: center;
+    display: block; // Make button take full width up to its clamp max-width
+    margin-top: 10px; // Space from price
+    &:hover {
+        background-color: #000;
+    }
+}
+
+/* Media Queries for different screen sizes */
+
+@media (max-width: 1060px) {
+    .container {
+        flex-direction: column; // Stack image and text vertically
+        align-items: center; // Center items when stacked
+        padding: 30px 15px;
+        gap: 30px; // Space between stacked sections
+    }
+
+    .image {
+        width: clamp(250px, 70vw, 500px); // Larger image when stacked vertically
+        height: auto;
+    }
+
+    .productInfoSection, .interactivePartWrapper {
+        width: 100%; // Take full width available
+        max-width: 700px; // But still limit for readability
+        align-items: center; // Center content within these sections
+        text-align: center; // Center text in product info section
+        margin: 0 auto; // Re-center interactive part
+    }
+
+    .nazvanie h3, .nazvanie h4 {
+        display: block; // Allow background to span full width
+        margin: 5px auto; // Center blocks
+    }
+
+    .harakteristiki {
+        justify-content: center; // Center characteristics
+    }
+
+    .about_product p {
+        text-align: left; // Keep long paragraphs left-aligned
+        max-width: 600px;
+        margin: 0 auto 20px auto;
+    }
+
+    .about_product h3 {
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+    main {
+        padding-top: 60px; // Adjust for smaller header on mobile
+    }
+    .container {
+        padding: 20px 10px;
+        gap: 20px;
+    }
+    .image {
+        width: clamp(200px, 80vw, 400px);
+    }
+    .productInfoSection, .interactivePartWrapper {
+        min-width: unset; // Allow to shrink more
+    }
+    .nazvanie h3 {
+        font-size: clamp(24px, 5vw, 32px);
+    }
+    .nazvanie h4 {
+        font-size: clamp(18px, 4vw, 24px);
+    }
+    .featureBox {
+        font-size: clamp(14px, 2.5vw, 18px);
+        padding: 4px 8px;
+    }
+    .about_product p {
+        font-size: clamp(14px, 2.2vw, 18px);
+    }
+    .about_product h3 {
+        font-size: clamp(18px, 2.5vw, 22px);
+    }
+    .itemQuality {
+        font-size: clamp(20px, 4vw, 24px);
+    }
+    .itemQuality button {
+        width: clamp(35px, 6vw, 45px);
+        height: clamp(35px, 6vw, 45px);
+        font-size: clamp(24px, 5vw, 30px);
+    }
+    .chooseOptions {
+        gap: 15px; // Reduced gap
+    }
+    .optionButton {
+        width: clamp(100px, 25vw, 160px); // Adjust button width for smaller screens
+        min-height: 150px;
+    }
+    .optionButton img {
+        height: clamp(60px, 15vw, 100px);
+    }
+    .figcaption {
+        font-size: clamp(12px, 2vw, 16px);
+    }
+    .priceRow {
+        font-size: clamp(18px, 3vw, 22px);
+    }
+    .addToBasket {
+        width: clamp(180px, 40vw, 250px);
+        font-size: clamp(18px, 3vw, 24px);
+        padding: 8px 15px;
+    }
+    .dropZone, .uploadMessage, .uploadedFilesContainer {
+        text-align: center;
+    }
+    .uploadedFilesList {
+        text-align: left; /* Keep the list items left-aligned */
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 15px 5px;
+        gap: 15px;
+    }
+    .image {
+        width: clamp(180px, 90vw, 300px);
+    }
+    .nazvanie h3 {
+        font-size: clamp(20px, 6vw, 28px);
+    }
+    .nazvanie h4 {
+        font-size: clamp(16px, 5vw, 20px);
+    }
+    .featureBox {
+        font-size: clamp(12px, 3vw, 16px);
+        padding: 3px 6px;
+    }
+    .about_product p {
+        font-size: clamp(12px, 2.8vw, 16px);
+    }
+    .about_product h3 {
+        font-size: clamp(16px, 3vw, 20px);
+    }
+    .itemQuality {
+        font-size: clamp(18px, 5vw, 22px);
+    }
+    .itemQuality button {
+        width: clamp(30px, 8vw, 40px);
+        height: clamp(30px, 8vw, 40px);
+        font-size: clamp(20px, 6vw, 28px);
+    }
+    .chooseOptions {
+        gap: 10px;
+    }
+    .optionButton {
+        width: clamp(90px, 35vw, 130px); // Allow smaller widths for more columns on small screens
+        min-height: 120px;
+        padding: 5px;
+    }
+    .optionButton img {
+        height: clamp(50px, 18vw, 80px);
+    }
+    .priceRow {
+        font-size: clamp(16px, 3.5vw, 20px);
+    }
+    .addToBasket {
+        width: clamp(160px, 50vw, 200px);
+        font-size: clamp(16px, 3.5vw, 20px);
+        padding: 6px 12px;
+    }
+}

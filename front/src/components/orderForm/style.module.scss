@@ -1,0 +1,395 @@
+/* Переменные для цветов */
+:root {
+    --primary-color: #97020E;
+    --dark-text-color: #000;
+    --secondary-text-color: #333;
+    --background-color: #fff;
+    --error-color: #dc3545; /* Стандартный красный для ошибок */
+    --border-color: #ccc;
+    --focus-border-color: #97020E;
+    --button-hover-bg: #000; /* Черный при наведении на кнопку */
+    --button-hover-text: #fff;
+    --delete-button-hover-bg: #97020E; /* Бордовый при наведении на кнопку удаления */
+}
+
+/* Общие стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Важно для адаптивности: padding и border не увеличивают размер элемента */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Более современный шрифт */
+}
+
+body {
+    line-height: 1.6;
+    color: var(--secondary-text-color);
+    background-color: var(--background-color);
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+/* Контейнеры и обертки */
+.app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Занимает всю высоту viewport */
+}
+
+main {
+    flex-grow: 1; /* Позволяет main занимать доступное пространство */
+}
+
+.main__container {
+    padding: 40px 20px; /* Уменьшим padding для лучшей адаптивности на мобильных */
+    max-width: 1200px; /* Ограничим ширину для больших экранов */
+    margin: 0 auto; /* Центрируем контейнер */
+}
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Изменим, чтобы форма не была строго по центру вертикально, если она длинная */
+    min-height: 50vh; /* Обеспечит минимальную высоту для размещения формы */
+}
+
+.orderPage {
+    width: 100%; /* Занимает всю доступную ширину в wrapper */
+    display: flex;
+    justify-content: center; /* Центрируем форму внутри orderPage */
+}
+
+/* Форма */
+.orderForm {
+    background-color: var(--background-color);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 100%; /* На мобильных занимает всю ширину */
+    max-width: 600px; /* Ограничиваем максимальную ширину формы */
+    text-align: left;
+}
+
+.orderForm h2 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+    font-size: 2.2em; /* Относительный размер шрифта */
+}
+
+.formGroup {
+    margin-bottom: 25px; /* Увеличим отступы между группами полей */
+    display: flex;
+    flex-direction: column; /* Элементы в колонку */
+}
+
+.formGroup label {
+    color: var(--dark-text-color);
+    font-size: 1.2em; /* Относительный размер шрифта */
+    font-weight: bold;
+    margin-bottom: 8px; /* Отступ между меткой и полем ввода */
+    display: block; /* Убедимся, что label занимает всю ширину */
+}
+
+.formGroup input {
+    border: 1px solid var(--border-color); /* Более тонкая граница */
+    outline: none;
+    background: transparent;
+    width: 100%; /* Полная ширина поля */
+    padding: 12px 15px; /* Увеличим padding для удобства ввода */
+    height: auto; /* Позволим высоте адаптироваться */
+    font-size: 1.1em;
+    border-radius: 4px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.formGroup input:focus {
+    border-color: var(--focus-border-color);
+    box-shadow: 0 0 0 3px rgba(151, 2, 14, 0.2); /* Легкая тень при фокусе */
+}
+
+/* Сообщения об ошибках валидации */
+.error {
+    color: var(--error-color);
+    font-size: 0.9em;
+    margin-top: 5px;
+    display: block; /* Каждая ошибка на новой строке */
+}
+
+/* Секция корзины */
+.cartSummary {
+    background-color: #f9f9f9; /* Светло-серый фон для секции корзины */
+    border: 1px solid #eee;
+    border-radius: 6px;
+    padding: 20px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.cartSummary h4 {
+    color: var(--dark-text-color);
+    margin-bottom: 15px;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.cartSummary ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 15px;
+}
+
+.cartSummary li {
+    padding: 8px 0;
+    border-bottom: 1px dashed #eee;
+    font-size: 1em;
+    color: var(--secondary-text-color);
+}
+
+.cartSummary li:last-child {
+    border-bottom: none;
+}
+
+.totalSum {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: var(--primary-color);
+    text-align: right;
+    margin-top: 15px;
+}
+
+.emptyCartMessage {
+    text-align: center;
+    color: var(--secondary-text-color);
+    margin: 30px 0;
+    font-size: 1.1em;
+}
+
+/* Dropzone для файлов */
+.dropzone {
+    border: 2px dashed var(--primary-color); /* Используем основной цвет */
+    padding: 30px; /* Увеличим padding */
+    text-align: center;
+    margin: 20px 0;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 150px;
+}
+
+.dropzone:hover {
+    background-color: #f5f5f5; /* Легкое изменение фона при наведении */
+}
+
+.dropzone p {
+    font-size: 1.1em;
+    color: var(--secondary-text-color);
+    margin-bottom: 15px;
+}
+
+.uploadButton {
+    display: inline-block;
+    padding: 12px 25px; /* Увеличим padding */
+    background-color: var(--primary-color);
+    color: var(--background-color);
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.uploadButton:hover {
+    background-color: var(--button-hover-bg);
+    color: var(--button-hover-text);
+}
+
+/* Список загруженных файлов */
+.uploadedFilesList {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+}
+
+.uploadedFilesList h4 {
+    color: var(--dark-text-color);
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+.uploadedFilesList li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px dashed #eee;
+    color: var(--secondary-text-color);
+}
+
+.uploadedFilesList li:last-child {
+    border-bottom: none;
+}
+
+.deleteFile {
+    background-color: var(--dark-text-color);
+    color: var(--background-color);
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.2s ease;
+}
+
+.deleteFile:hover {
+    background-color: var(--delete-button-hover-bg);
+}
+
+/* Кнопка "Заказать" */
+.orderNow {
+    display: block; /* Кнопка занимает всю ширину */
+    width: 100%;
+    margin-top: 30px;
+    padding: 15px 20px;
+    font-size: 1.8em; /* Увеличим размер текста */
+    color: var(--background-color);
+    background-color: var(--primary-color);
+    border: 2px solid var(--primary-color); /* Граница в цвет кнопки */
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.orderNow:hover:not(:disabled) { /* Только если кнопка не отключена */
+    color: var(--button-hover-text);
+    background-color: var(--button-hover-bg);
+    border-color: var(--primary-color); /* Граница остается основной, чтобы не "прыгала" */
+}
+
+.orderNow:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    border-color: #cccccc;
+}
+
+/* Медиа-запросы для адаптивности */
+/* Для планшетов (ширина до 768px) */
+@media (max-width: 768px) {
+    .orderForm {
+        padding: 25px;
+        max-width: 500px; /* Чуть уменьшим максимальную ширину для планшетов */
+    }
+
+    .orderForm h2 {
+        font-size: 2em;
+    }
+
+    .formGroup label {
+        font-size: 1.1em;
+    }
+
+    .formGroup input {
+        padding: 10px 12px;
+        font-size: 1em;
+    }
+
+    .orderNow {
+        font-size: 1.5em;
+        padding: 12px 15px;
+    }
+
+    .dropzone {
+        padding: 25px;
+    }
+
+    .dropzone p {
+        font-size: 1em;
+    }
+
+    .uploadButton {
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+
+    .cartSummary h4 {
+        font-size: 1.3em;
+    }
+
+    .totalSum {
+        font-size: 1.1em;
+    }
+}
+
+/* Для мобильных устройств (ширина до 480px) */
+@media (max-width: 480px) {
+    .main__container {
+        padding: 20px 10px; /* Меньше отступов по бокам */
+    }
+
+    .orderForm {
+        padding: 20px;
+        box-shadow: none; /* Уберем тень на самых маленьких экранах, чтобы форма выглядела "родной" */
+        border-radius: 0;
+    }
+
+    .orderForm h2 {
+        font-size: 1.8em;
+        margin-bottom: 20px;
+    }
+
+    .formGroup {
+        margin-bottom: 20px;
+    }
+
+    .formGroup label {
+        font-size: 1em;
+    }
+
+    .formGroup input {
+        padding: 8px 10px;
+        font-size: 0.9em;
+    }
+
+    .orderNow {
+        font-size: 1.3em;
+        padding: 10px 15px;
+    }
+
+    .dropzone {
+        padding: 20px;
+    }
+
+    .dropzone p {
+        font-size: 0.9em;
+    }
+
+    .uploadButton {
+        padding: 8px 15px;
+        font-size: 0.8em;
+    }
+
+    .cartSummary {
+        padding: 15px;
+    }
+
+    .cartSummary h4 {
+        font-size: 1.2em;
+    }
+
+    .cartSummary li {
+        font-size: 0.9em;
+    }
+
+    .totalSum {
+        font-size: 1em;
+    }
+}  

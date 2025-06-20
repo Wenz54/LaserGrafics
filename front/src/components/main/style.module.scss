@@ -1,0 +1,356 @@
+/* Base styles and resets */
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box; /* Essential for consistent box model */
+}
+
+html, body, #root {
+    height: 100%; /* Ensures full height for layout */
+}
+
+body {
+    line-height: 1.6;
+    color: #333;
+    overflow-x: hidden; /* Prevents horizontal scroll on small screens */
+    display: flex;
+    flex-direction: column; /* Allows main to push footer down */
+    min-height: 100vh; /* Ensures body takes at least full viewport height */
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+/* --- Section 1: Hero Section --- */
+.heroSection {
+    background-image: url('../../../public/resourses/bckgrnd.gif');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+	width: 100vw;
+	padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative; /* Needed for z-index context */
+    background-attachment: fixed; /* Keep background fixed during scroll */
+}
+
+.heroOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1; /* Ensure overlay is above background but below text */
+}
+
+.heroContent {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #fff;
+	height: 100vh;
+    font-size: clamp(15px, 1.5vw, 70px);
+    max-width: 1200px; /* Limit content width */
+    width: 90%; /* Responsive width */
+    z-index: 2; /* Ensure text is above overlay */
+    flex-wrap: wrap; /* Allow content to wrap on smaller screens */
+    gap: 20px; /* Space between title and description */
+}
+
+.heroTitleAnimation {
+    animation-name: dvij;
+    animation-duration: 1.5s;
+    flex: 1; /* Allows it to take available space */
+    min-width: 250px; /* Minimum width for title */
+}
+
+.heroTitle {
+    font-size: clamp(2.5rem, 6vw, 5rem); /* Responsive font size for title */
+    line-height: 1.1;
+    white-space: nowrap; /* Keep title on one line if possible */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.heroDescription {
+    animation-name: dvij2;
+    animation-duration: 1.5s;
+    flex: 2; /* Allows description to take more space */
+    max-width: 600px; /* Max width for readability */
+    min-width: 280px; /* Minimum width for description */
+    font-size: clamp(1rem, 1.5vw, 1.5rem); /* Responsive font size */
+    text-align: right; /* Align text to the right by default */
+    line-height: 1.5;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.heroDescription p {
+    margin-bottom: 15px; /* Space below paragraph */
+}
+
+.heroLink {
+    background-color: #97020E;
+    color: #fff;
+    transition: all .2s ease;
+    padding: 8px 15px; /* More padding for better click area */
+    border-radius: 5px; /* Slightly rounded corners */
+    display: inline-block; /* Ensures padding works */
+    margin-top: 10px; /* Space above the link */
+}
+
+.heroLink:hover {
+    background-color: white;
+    color: #000;
+}
+
+@keyframes dvij {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes dvij2 {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* --- Section 2: Featured Section --- */
+.featuredSection {
+    padding: clamp(50px, 8vw, 100px) 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: #f8f8f8; /* Light background for separation */
+}
+
+.featuredText {
+    margin-bottom: clamp(30px, 5vw, 60px);
+    max-width: 800px;
+}
+
+.featuredTitle {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    color: #000;
+    margin-bottom: 15px;
+}
+
+.featuredDescription {
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    color: #555;
+}
+
+.featuredGrid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.featuredCard {
+    background-color: #000; /* Dark background for the card */
+    color: #fff;
+    padding: 10px;
+    opacity: 0.9;
+    transition: all .3s ease;
+    flex-basis: calc(33.333% - 30px); /* Three columns layout */
+    max-width: 400px; /* Max width for individual cards */
+    min-width: 280px; /* Minimum width for responsiveness */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    overflow: hidden; /* Hide overflowing text initially */
+    height: 350px; /* Fixed height for cards */
+}
+
+.featuredCard:hover {
+    opacity: 1;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+}
+
+.featuredCardImage {
+    width: 100%;
+    height: 100%; /* Image takes full height of the card */
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    transition: transform 0.3s ease;
+}
+
+.featuredCard:hover .featuredCardImage {
+    transform: scale(1.05); /* Slightly zoom image on hover */
+}
+
+.featuredCardOverlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Darker overlay for text readability */
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    z-index: 2; /* Ensure text is above image */
+    transition: background 0.3s ease;
+}
+
+.featuredCard:hover .featuredCardOverlay {
+    background: rgba(0, 0, 0, 0.85); /* Even darker on hover */
+}
+
+.featuredCardTitle {
+    font-size: clamp(1.2rem, 2vw, 1.8rem);
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.featuredCardText {
+    font-size: clamp(0.8rem, 1.2vw, 1rem);
+    color: #eee;
+    opacity: 0; /* Hidden by default */
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+}
+
+.featuredCard:hover .featuredCardText {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+
+/* --- Section 3: Location Section --- */
+.locationSection {
+    height: auto; /* Adjust height based on content */
+    min-height: 50vh; /* Minimum height to ensure visibility */
+    padding: clamp(50px, 8vw, 100px) 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+}
+
+.locationText {
+    margin-bottom: clamp(30px, 5vw, 60px);
+    max-width: 800px;
+    text-align: center;
+}
+
+.locationTitle {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    color: #000;
+    margin-bottom: 15px;
+}
+
+.locationDescription {
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    color: #555;
+}
+
+.locationMap {
+    width: 100%;
+    max-width: 1200px; /* Limit map width */
+    height: clamp(300px, 40vw, 500px); /* Responsive height for the map */
+}
+
+.locationMap iframe {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px; /* Slightly rounded corners for the map */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+
+/* --- Media Queries --- */
+
+@media screen and (max-width: 768px) {
+    .heroContent {
+        flex-direction: column; /* Stack title and description vertically */
+        text-align: center;
+        gap: 15px;
+    }
+
+    .heroDescription {
+        text-align: center; /* Center text on small screens */
+    }
+
+    .heroLink {
+        margin: 20px auto 0; /* Center the link */
+    }
+
+    .featuredGrid {
+        flex-direction: column; /* Stack featured cards */
+        align-items: center;
+    }
+
+    .featuredCard {
+        flex-basis: 90%; /* Take almost full width */
+        max-width: 450px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .heroTitle {
+        font-size: clamp(2rem, 8vw, 3rem); /* Smaller font for very small screens */
+    }
+
+    .heroDescription {
+        font-size: clamp(0.9rem, 2vw, 1.2rem);
+    }
+
+    .featuredTitle,
+    .locationTitle {
+        font-size: clamp(1.8rem, 5vw, 2.5rem);
+    }
+
+    .featuredDescription,
+    .locationDescription {
+        font-size: clamp(0.9rem, 2vw, 1.1rem);
+    }
+
+    .featuredCardTitle {
+        font-size: clamp(1rem, 2.5vw, 1.5rem);
+    }
+    .featuredCardText {
+        font-size: clamp(0.7rem, 1.5vw, 0.9rem);
+    }
+}

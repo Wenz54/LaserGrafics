@@ -1,0 +1,237 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box; // Add box-sizing for easier layout calculations
+}
+
+html, body, #root { // Ensure html, body, and root div fill the viewport for sticky footer
+    height: 100%;
+}
+
+body {
+    display: flex; // Enable flexbox
+    flex-direction: column; // Stack children vertically
+    min-height: 100vh; // Ensure body takes at least full viewport height
+    line-height: 1.6;
+    color: #333;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* Products */
+
+// This class seems specific to MacroCat; if not used here, consider removing for StampsCat
+.main__container {
+    padding: 5.5% 0px 0px 0px;
+}
+
+.main__container2 {
+    padding: 18% 0px 15% 0px; // Initial padding, adjusted by media queries
+    flex-grow: 1; // Allow main content to grow and push footer down
+    display: flex; // Enable flexbox for inner content
+    flex-direction: column; // Stack rows vertically
+    align-items: center; // Center rows horizontally
+    justify-content: center; // Center rows vertically if space allows
+}
+
+.plate_row_kostil { // Renamed from plate_row to differentiate if both are used
+    display: flex;
+    justify-content: center; // Use center to keep plates together on wrap
+    flex-direction: row;
+    flex-wrap: wrap; // Allow items to wrap on smaller screens
+    gap: 30px; // Add some gap between plates
+    margin-bottom: 30px; // Space between rows if there were multiple
+}
+
+.plate_row { // This class isn't used in the provided StampsCat JSX, but keeping for completeness
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.plate {
+    max-width: 400px;
+    max-height: 399px; // This height might be restrictive, reconsider if content overflows
+    overflow: hidden;
+    margin: 15px; // Reduced margin slightly for better wrapping, but consider 'gap' on plate_row
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Optional: add subtle shadow
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative; // Needed for positioning inner elements
+    padding-bottom: 20px; // Add padding for text content
+    min-width: 280px; // Ensure plates don't get too small
+    width: 100%; // Default to full width for small screens, overridden by flex-wrap
+}
+
+.plate img {
+    height: 400px; // This fixed height might be an issue, let's make it responsive
+    width: 100%; // Make image fill its container
+    max-width: 400px; // Limit max width
+    object-fit: cover; // Ensure image covers the area without distortion
+    transition: all 0.3s ease;
+}
+
+.plate_text, .plate_text2 { // plate_text2 not used in JSX, but keeping for completeness
+    display: flex;
+    flex-direction: column; // Stack title and paragraph vertically
+    width: 100%;
+    position: absolute; // Position over the image
+    bottom: 0; // Stick to the bottom of the plate
+    left: 0;
+    z-index: 1; // Ensure text is above image
+    align-items: flex-start; // Align text to the start
+    padding: 10px; // Add some padding
+    pointer-events: none; // Allow clicks to pass through to the link below
+}
+
+.plate_text h2, .plate_text2 h2 {
+    background-color: #000;
+    color: #fff;
+    padding: 5px 15px; // Adjusted padding
+    font-size: 1.5em; // Use em for better scaling
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; // Handle long titles
+    transition: all 0.3s ease;
+    align-self: flex-start; // Align title to the start
+    margin-left: 5px; // Retain original offset
+    margin-bottom: 5px; // Space between title and paragraph
+    pointer-events: auto; // Re-enable pointer events for the h2
+    transform: translateY(0); // Initial position for animation
+}
+
+.plate_text p, .plate_text2 p {
+    padding: 10px;
+    background-color: #97020E;
+    color: #fff;
+    font-size: 0.85em; // Use em for better scaling
+    visibility: hidden;
+    opacity: 0; // Use opacity for smooth fade in/out
+    transition: all .3s ease-in-out;
+    width: calc(100% - 20px); // Adjust width to account for padding
+    align-self: flex-start; // Align paragraph to the start
+    margin-left: 5px; // Retain original offset
+    pointer-events: auto; // Re-enable pointer events for the p
+    transform: translateY(20px); // Initial position for animation
+}
+
+// Hover effects
+.plate:hover img {
+    transform: scale(0.9); // Smaller scale for less jumpiness
+    margin-top: -10%; // Keep this if it's part of the desired animation
+    position: relative; // Ensure it animates correctly
+}
+
+.plate:hover .plate_text p,
+.plate:hover .plate_text2 p {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0); // Move to original position
+}
+
+.plate:hover .plate_text h2,
+.plate:hover .plate_text2 h2 {
+    background-color: #000; // Keep original color
+    color: #fff; // Keep original color
+    font-size: 1.6em; // Slightly larger on hover
+    transform: translateY(-10px); // Move up slightly
+}
+
+.plate:hover {
+    background-color: #f8f8f8; // Slightly lighter background on hover
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); // More pronounced shadow
+}
+
+/* Media Queries for Responsiveness */
+
+@media (max-width: 1200px) {
+    .plate_row_kostil { // Apply to this specific row
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center; // Ensure centering when wrapping
+    }
+    .plate {
+        margin: 15px; // Consistent margin
+    }
+}
+
+@media (max-width: 992px) {
+    .main__container2 {
+        padding: 10% 0px; // Reduce top/bottom padding
+    }
+    .plate {
+        max-width: 350px;
+        min-width: unset; // Allow smaller width if needed
+        img {
+            height: 350px;
+        }
+    }
+    .plate_text h2, .plate_text2 h2 {
+        font-size: 1.3em;
+    }
+    .plate_text p, .plate_text2 p {
+        font-size: 0.8em;
+    }
+}
+
+@media (max-width: 768px) {
+    .main__container2 {
+        padding: 8% 0px; // Further reduce padding
+    }
+    .plate_row_kostil { // Stack plates vertically
+        flex-direction: column;
+        align-items: center; // Center individual plates
+    }
+    .plate {
+        max-width: 90%; // Take up almost full width
+        margin: 20px 0; // More vertical spacing when stacked
+        img {
+            height: 300px; // Adjust image height
+        }
+    }
+    .plate_text h2, .plate_text2 h2 {
+        font-size: 1.2em;
+        margin-left: 10px; // Adjust margin for smaller screens
+    }
+    .plate_text p, .plate_text2 p {
+        font-size: 0.75em;
+        width: calc(100% - 40px); // Adjust width for smaller screens
+        margin-left: 10px; // Adjust margin
+    }
+    .plate:hover img {
+        transform: scale(0.95); // Less aggressive scaling
+        margin-top: -5%;
+    }
+    .plate:hover .plate_text p,
+    .plate:hover .plate_text2 p {
+        margin-top: 0; // Reset this for simpler positioning on small screens
+    }
+}
+
+@media (max-width: 480px) {
+    .main__container2 {
+        padding: 5% 0px;
+    }
+    .plate {
+        max-width: 95%;
+        img {
+            height: 250px;
+        }
+    }
+    .plate_text h2, .plate_text2 h2 {
+        font-size: 1em;
+        padding: 5px 10px;
+    }
+    .plate_text p, .plate_text2 p {
+        font-size: 0.7em;
+        padding: 5px;
+    }
+}	

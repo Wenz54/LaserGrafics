@@ -1,0 +1,237 @@
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Лазер Графикс</title>
+	<link rel="stylesheet" href="CSS/StyleProductPage.css" type="text/css">
+	<link rel="stylesheet" href="CSS/StyleHeader.css" type="text/css">
+	<link rel="stylesheet" href="CSS/StyleFooter.css" type="text/css">
+	<style>
+		#drop_zone {
+			width: 74%;
+			border: 2px dashed #97020E;
+			border-radius: 5px;
+			background: white;
+			padding: 50px;
+			margin: 20px 0px 20px 0px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-family: Arial;
+			color: #888;
+		}
+
+		#drop_zone.hover {
+			border-color: #0087F7;
+			color: #0087F7;
+		}
+
+		progress {
+			width: 100%;
+		}
+
+		img {
+			width: 100%;
+		}
+	</style>
+
+</head>
+	
+<body>
+	<header class="scrolled"> 
+		<a href="main.html"><img src="CSS/resourses/LOGO.png" alt="LOGO"></a>
+		<div class="src">
+			<form>
+				<input type="text" placeholder="Поиск...">
+	  		</form>
+		</div>
+		<nav>
+			<a href="about.html">О нас</a>
+			<a href="categories.html">Категории</a>
+			<a href="contacts.html">Контакты</a>
+			<a href="#">Корзина</a>
+			<div class="lc"><a href="#">Личный кабинет</a></div>
+		</nav>
+	</header>
+    <main>
+        <div class="container">
+			<img src="morojenoe.png" alt="gerbi" style="margin-left: 3.9%;">
+			<div class="nazvanie">
+				<h3>Круглый пломбир</h3>
+				<h4>Металлическая</h4>
+			</div>
+
+			<div class="harakteristiki">
+				<div class="sindzi_4moshnik" style="margin-left: 20px;">
+					<p>Ø42-45мм</p>
+				</div>
+				<div class="sindzi_4moshnik">
+					<p>Латунь</p>
+				</div>
+			</div>
+
+			<div class="about_product">
+				<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Blanditiis architecto sed ut fuga culpa
+					soluta quidem corrupti, iusto illo voluptates, accusantium dolorem nostrum. Vitae laudantium quis
+					neque officiis eveniet ullam! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eveniet
+					doloribus nam labore veritatis ut rerum obcaecati, iusto sint amet animi, natus laboriosam dicta
+					voluptates aperiam id consectetur, repellendus autem a.</p>
+				<br>
+				<h3>Выберите пломбиратор:</h3> <br>
+				<h6 style="margin-top: -2% ;"> (не волнуйтесь, мы уже заботливо подобрали их под размер печати)</h6>
+			</div>
+
+
+		</div>
+		<div class="interactivePartWrapper">
+			<div class="chooseOsnastka">
+				<button id="professional1" style="margin-left:-76.3%;">
+					<img src="CSS/resourses/plombirator.jpg" alt="">
+					<p style="color: white; background-color: #97020E;">Пломбиратор</p>
+					<figcaption id="priceOfOsn1" class="figcaption" style="color: black; text-align: center;">
+						650р
+                    </figcaption>
+				</button>
+				<button id="professional2" style="display: none;">
+					<img src="CSS/resourses/KrugLego.jpg" alt="">
+					<p style="color: white; background-color: #97020E;">Proffesional</p>
+					<figcaption id="priceOfOsn2" class="figcaption" style="color: black; text-align: center;">800р
+					</figcaption>
+					<p>Ø42</p>
+				</button>
+				<button id="printy1" style="display: none;">
+					<img src="CSS/resourses/MihailKvadrat.jpg" alt="">
+					<p style="color: white; background-color: #97020E;">Printy</p>
+					<figcaption id="priceOfOsn3" class="figcaption" style=" color: black; text-align: center;">500р
+					</figcaption>
+					<p>Ø45</p>
+				</button>
+				<button id="printy2" style="display: none;">
+					<img src="CSS/resourses/MihailKvadrat.jpg" alt="">
+					<p style="color: white; background-color: #97020E;">Printy</p>
+					<figcaption id="priceOfOsn4" class="figcaption" style="color: black; text-align: center;">400р
+					</figcaption>
+					<p>Ø42</p>
+				</button>
+				<button id="ideal" style="display: none;">
+					<img src="CSS/resourses/Kruglie_tovari/4924ideal/4924.jpg" alt="">
+					<p style="color: white; background-color: #97020E;">Ideal</p>
+					<figcaption id="priceOfOsn5" class="figcaption" style="color: black; text-align: center;">300р
+					</figcaption>
+					<p>Ø42</p>
+				</button>
+				<button id="empty" style="margin-left:-150%;">
+					<h3>Очистить выбор</h3>
+				</button>
+			</div>
+
+			<div class="itemQuality">
+				<button id="minus">-</button>
+				<h3 id="quality">1</h3>
+				<button id="plus">+</button>
+				<h3 id="price">720.00р</h3>
+				<p>+</p>
+				<h3 id="osnastkiPrice">0.00р</h3>
+			</div>
+			<h2>Последний шаг: мышкой перетащите сюда ваши документы</h2>
+			<div id="drop_zone">Вот сюда</div>
+			<output id="list"></output>
+			<script>
+				function handleFileSelect(evt) {
+					evt.stopPropagation();
+					evt.preventDefault();
+
+					var files = evt.dataTransfer.files; // FileList объектик
+
+					// Файлы - FileList объекты. Настройки оных
+					var output = [];
+					for (var i = 0, f; f = files[i]; i++) {
+						output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
+							f.size, ' bytes, last modified: ',
+							f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
+							'</li>');
+
+						// нью форм дата
+						var formData = new FormData();
+
+						// Добавить файл в запрос
+						formData.append('file', f);
+
+						// АЖАКС реквест
+						var xhr = new XMLHttpRequest();
+						xhr.open('POST', 'upload.php', true); // Заменить "upload.php" на серверский скрипт
+
+						// Отслеживание прогресса
+						xhr.upload.onprogress = function (e) {
+							if (e.lengthComputable) {
+								var percentage = Math.round((e.loaded / e.total) * 100);
+								document.getElementById('list').innerHTML = 'Uploading: ' + percentage + '%';
+							}
+						};
+
+						// Handle the response from the server
+						xhr.onload = function () {
+							if (xhr.status == 200) {
+								document.getElementById('list').innerHTML = 'Мы загрузили ваше фото!';
+							} else {
+								document.getElementById('list').innerHTML = 'Возникла ошибка при отправке данных на сервер. Пожалуйста, свяжитесь с нами любым удобным Вам способом через страницу "Контакты"';
+							}
+						};
+
+						// Отправка данных
+						xhr.send(formData);
+					}
+					document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
+				}
+
+				function handleDragOver(evt) {
+					evt.stopPropagation();
+					evt.preventDefault();
+					evt.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.
+				}
+
+				// Setup the dnd listeners.
+				var dropZone = document.getElementById('drop_zone');
+				dropZone.addEventListener('dragover', handleDragOver, false);
+				dropZone.addEventListener('drop', handleFileSelect, false);
+			</script>
+
+			<div class="orderBtns">
+				<button id="addToBasket">Добавить в корзину</button>
+				<button id="orderNow">Заказать сейчас</button>
+			</div>
+		</div>
+
+		<div class="footer2">
+			<div class="Column">
+				<h3>Lorem</h3>
+				<a href="#">Lorem ipsum</a>
+				<a href="#">Lorem ipsum</a>
+				<a href="#">Lorem ipsum</a>
+				<a href="#">Lorem ipsum</a>
+			</div>
+			<div class="Column">
+				<h3>Lorem</h3>
+				<a href="#">Lorem ipsum</a>
+				<a href="#">Lorem ipsum</a>
+				<a href="#">Lorem ipsum</a>
+				<a href="#">Lorem ipsum</a>
+			</div>
+			<div class="Column">
+				<h3>Lorem</h3>
+				<a href="#">Lorem ipsum</a>
+				<a href="#">Lorem ipsum</a>
+				<a href="#">Lorem ipsum</a>
+				<a href="#">Lorem ipsum</a>
+			</div>
+			<div class="Column">
+				<h3>Lorem</h3>
+				<a href="#">Lorem ipsum</a>
+				<a href="#">Lorem ipsum</a>
+				<a href="#">Lorem ipsum</a>
+				<a href="#">Lorem ipsum</a>
+			</div>
+		</div>
+
+	</main>
+	<script src="JS/productScript.js"></script>
+</body>

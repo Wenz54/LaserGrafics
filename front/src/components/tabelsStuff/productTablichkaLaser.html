@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Лазер Графикс</title>
+	<link rel="stylesheet" href="CSS/StyleProductPage.css" type="text/css">
+	<link rel="stylesheet" href="CSS/StyleHeader.css" type="text/css">
+	<link rel="stylesheet" href="CSS/StyleFooter.css" type="text/css">
+
+</head>
+
+<body>
+	<header class="scrolled">
+		<a href="main.html"><img src="CSS/resourses/LOGO.png" alt="LOGO"></a>
+		<div class="src">
+			<form>
+				<input type="text" placeholder="Поиск...">
+			</form>
+		</div>
+		<nav>
+			<a href="about.html">О нас</a>
+			<a href="categories.html">Категории</a>
+			<a href="contacts.html">Контакты</a>
+			<a href="#">Корзина</a>
+			<div class="lc"><a href="#">Личный кабинет</a></div>
+		</nav>
+	</header>
+
+	<main>
+		<div class="container">
+			<img src="fasad.png" alt="fasad" style="padding: 15px;">
+			<div class="nazvanie" style="margin-left: -30px;">
+				<h3>Гравировка</h3>
+				<h4>Лазерная</h4>
+			</div>
+
+			<div class="harakteristiki" style="margin-left: -130px;">
+				<div class="sindzi_4moshnik">
+					<p>Ø42-45мм</p>
+				</div>
+				<div class="sindzi_4moshnik">
+					<p>Резина</p>
+				</div>
+			</div>
+			<div class="about_product">
+				<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Blanditiis architecto sed ut fuga culpa
+					soluta quidem corrupti, iusto illo voluptates, accusantium dolorem nostrum. Vitae laudantium quis
+					neque officiis eveniet ullam! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eveniet
+					doloribus nam labore veritatis ut rerum obcaecati, iusto sint amet animi, natus laboriosam dicta
+					voluptates aperiam id consectetur, repellendus autem a.</p>
+				<h3>Выберите размер:</h3> <br>
+			</div>
+		</div>
+		<div class="interactivePartWrapper" style="margin: -5% 0px 0px 30%;">
+			<h3>Размеры:</h3> <br>
+			<div class="chooseOsnastka" style="margin-left:-60px ;">
+
+				<button id="professional1">
+					<img src="fasad.png" alt="">
+					<p style="color: white; background-color: #97020E;">400X300</p>
+					<figcaption id="priceOfOsn1" class="figcaption" style="color: black; text-align: center;">
+						3800р
+					</figcaption>
+					<p>400X300</p>
+				</button>
+				<button id="professional2">
+					<img src="fasad2.png" alt="">
+					<p style="color: white; background-color: #97020E;">500X700</p>
+					<figcaption id="priceOfOsn2" class="figcaption" style="color: black; text-align: center;"> 9875р
+					</figcaption>
+					<p>500Х700 мм</p>
+				</button>
+				<button id="printy1">
+					<img src="fasad3.png" alt="">
+					<p style="color: white; background-color: #97020E;">600X400</p>
+					<figcaption id="priceOfOsn3" class="figcaption" style=" color: black; text-align: center;">6850р
+					</figcaption>
+					<p>600Х400</p>
+				</button>
+				<button id="printy2">
+					<img src="fasad4.png" alt="">
+					<p style="color: white; background-color: #97020E;">600X800</p>
+					<figcaption id="priceOfOsn4" class="figcaption" style="color: black; text-align: center;">13450р
+					</figcaption>
+					<p>600Х800</p>
+				</button>
+				<button id="ideal" style="display: none;">
+					<img src="CSS/resourses/Kruglie_tovari/4924ideal/4924.jpg" alt="">
+					<p style="color: white; background-color: #97020E;">Ideal</p>
+					<figcaption id="priceOfOsn5" class="figcaption" style="color: black; text-align: center;">300р
+					</figcaption>
+					<p>Ø42</p>
+				</button>
+				<button id="empty">
+					<h3>Очистить выбор</h3>
+				</button>
+			</div>
+			<div class="itemQuality">
+				<button id="minus">-</button>
+				<h3 id="quality">1</h3>
+				<button id="plus">+</button>
+				<h3 id="price" style="display: none;">900.00р</h3>
+				<p style="display: none;">+</p>
+				<h3 id="osnastkiPrice">0.00р</h3>
+			</div>
+			<br>
+			<h3>Вы можете загрузить сюда рисунок вашей таблички!</h3> <br>
+			<h6 style="margin-top: -2% ;"></h6>
+			<div id="drop_zone">Вот сюда</div>
+			<output id="list"></output>
+			<script>
+				function handleFileSelect(evt) {
+					evt.stopPropagation();
+					evt.preventDefault();
+
+					var files = evt.dataTransfer.files; // FileList объектик
+
+					// Файлы - FileList объекты. Настройки оных
+					var output = [];
+					for (var i = 0, f; f = files[i]; i++) {
+						output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
+							f.size, ' bytes, last modified: ',
+							f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
+							'</li>');
+
+						// нью форм дата
+						var formData = new FormData();
+
+						// Добавить файл в запрос
+						formData.append('file', f);
+
+						// АЖАКС реквест
+						var xhr = new XMLHttpRequest();
+						xhr.open('POST', 'upload.php', true); // Заменить "upload.php" на серверский скрипт
+
+						// Отслеживание прогресса
+						xhr.upload.onprogress = function (e) {
+							if (e.lengthComputable) {
+								var percentage = Math.round((e.loaded / e.total) * 100);
+								document.getElementById('list').innerHTML = 'Uploading: ' + percentage + '%';
+							}
+						};
+
+						// Handle the response from the server
+						xhr.onload = function () {
+							if (xhr.status == 200) {
+								document.getElementById('list').innerHTML = 'Мы загрузили ваше фото!';
+							} else {
+								document.getElementById('list').innerHTML = 'Возникла ошибка при отправке данных на сервер. Пожалуйста, свяжитесь с нами любым удобным Вам способом через страницу "Контакты"';
+							}
+						};
+
+						// Отправка данных
+						xhr.send(formData);
+					}
+					document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
+				}
+
+				function handleDragOver(evt) {
+					evt.stopPropagation();
+					evt.preventDefault();
+					evt.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.
+				}
+
+				// Setup the dnd listeners.
+				var dropZone = document.getElementById('drop_zone');
+				dropZone.addEventListener('dragover', handleDragOver, false);
+				dropZone.addEventListener('drop', handleFileSelect, false);
+			</script>
+		</div>
+
+		</div>
+
+		<div class="footer2">
+			<div class="Column">
+				<h3>Lorem</h3>
+				<a href="#">Lorem ipsum</a>
+				<a href="#">Lorem ipsum</a>
+				<a href="#">Lorem ipsum</a>
+				<a href="#">Lorem ipsum</a>
+			</div>
+			<div class="Column">
+				<h3>Lorem</h3>
+				<a href="#">Lorem ipsum</a>
+				<a href="#">Lorem ipsum</a>
+				<a href="#">Lorem ipsum</a>
+				<a href="#">Lorem ipsum</a>
+			</div>
+			<div class="Column">
+				<h3>Lorem</h3>
+				<a href="#">Lorem ipsum</a>
+				<a href="#">Lorem ipsum</a>
+				<a href="#">Lorem ipsum</a>
+				<a href="#">Lorem ipsum</a>
+			</div>
+			<div class="Column">
+				<h3>Lorem</h3>
+				<a href="#">Lorem ipsum</a>
+				<a href="#">Lorem ipsum</a>
+				<a href="#">Lorem ipsum</a>
+				<a href="#">Lorem ipsum</a>
+			</div>
+		</div>
+
+	</main>
+	<script src="JS/productScript.js"></script>
+</body>

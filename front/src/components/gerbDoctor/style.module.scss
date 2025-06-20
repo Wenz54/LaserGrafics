@@ -1,0 +1,370 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  body {
+    min-height: 92%;
+    line-height: 1.6;
+    color: #333;
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  
+  main {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .active {
+    background-color: #007bff;
+    color: #ffffff;
+  }
+
+  .container {
+    padding-top: 7%;
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .container img {
+    height: 600px;
+    width: 600px;
+  }
+  
+  .nazvanie {
+    position: absolute;
+    padding-left: 31.5%;
+    padding-top: 3%;
+  }
+  
+  .nazvanie h3 {
+    font-size: 40px;
+    background-color: black;
+    color: white;
+    padding: 5px;
+    text-align: center;
+  }
+  
+  .nazvanie h4 {
+    background-color: #97020E;
+    color: white;
+    padding: 7px;
+    font-size: 30px;
+    font-weight: lighter;
+  }
+
+  .about_product a {
+    background-color: #97020E;
+    color: white;
+    padding: 7px;
+    font-size: 30px;
+    font-weight: lighter;
+  }
+  
+  .harakteristiki {
+    display: flex;
+    position: absolute;
+    padding-left: 50%;
+    padding-top: 3%;
+    flex-direction: row;
+  }
+  
+  .sindzi_4moshnik {
+    margin: 0px 5px;
+    position: relative;
+    background-color: black;
+    color: white;
+    font-size: 30px;
+    padding: 5px;
+    transition: all 0.2s ease;
+  }
+  
+  .sindzi_4moshnik:hover {
+    background-color: #97020E;
+  }
+  
+  .about_product {
+    margin-top: 9%;
+  }
+  
+  .about_product p {
+    padding-top: 5%;
+    font-size: 30px;
+  }
+  
+  .about_product h3 {
+    font-size: 30px;
+  }
+  
+  .interactivePartWrapper {
+    margin: 0px 0px 0% 30%;
+  }
+
+  .chooseStampType {
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    transition: all 0.2s ease;
+  }
+  
+  .chooseStampType img {
+    transition: all 0.2s linear;
+    height: 170px;
+  }
+
+  .chooseStampType button {
+    max-height: 250px;
+    height: 250px;
+    width: 300px;
+    max-width: 300px;
+    transition: all 0.2s linear;
+  }
+  
+  .chooseStampType button p {
+    transition: all 0.2s linear;
+  }
+  
+  .chooseStampTypeButton.active {
+    color: #97020E;
+    font-weight: bold;
+    font-size: 18px;
+    transition: all 0.2s ease;
+  }
+  
+  .chooseStampTypeButton {
+    padding: 5px;
+    transition: all 0.2s ease;
+    border: 0;
+    background-color: white;
+  }
+  
+  .chooseStampTypeButton:hover {
+    box-shadow: 3px 3px 3px #97020E;
+    transform: scale(1.05);
+  }
+
+  .chooseStampTypeButton.active .name {
+    font-weight: bold;
+    font-size: 18px;
+    color: #97020E;
+  }
+  
+  .chooseStampTypeButton.active figcaption {
+    display: none; /* hide price text */
+  }
+  
+  .chooseOsnastka {
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    transition: all 0.2 ease;
+  }
+  
+  .chooseOsnastka button {
+    max-height: 250px;
+    height: 250px;
+    width: 350px;
+    max-width: 350px;
+    transition: all 0.2s linear;
+  }
+  
+  .chooseOsnastka button p {
+    transition: all 0.2s linear;
+  }
+
+  .chooseOsnastkaButton.active {
+    color: #97020E;
+    font-weight: bold;
+    font-size: 18px;
+    transition: all 0.2 ease;
+  }
+  
+  .chooseOsnastkaButton.active .osnastkaName {
+    color: #97020E;
+    font-weight: bold;
+    font-size: 18px;
+    transition: all 0.2 ease;
+  }
+  
+  .chooseOsnastkaButton.active figcaption,
+  .chooseOsnastkaButton.active p:not(.osnastkaName) {
+    display: none; /* hide price and diameter text */
+  }
+  #professional1 {
+    padding: 5px;
+    transition: all 0.2 ease;
+    border: 0;
+    background-color: white;
+    max-width: 250px;
+  }
+  
+  #professional2 {
+    padding: 5px;
+    transition: all 0.2 ease;
+    border: 0;
+    background-color: white;
+  }
+  
+  #printy1 {
+    padding: 5px;
+    transition: all 0.2 ease;
+    border: 0;
+    background-color: white;
+  }
+  
+  #printy2 {
+    padding: 5px;
+    transition: all 0.2 ease;
+    border: 0;
+    background-color: white;
+  }
+  
+  #ideal {
+    padding: 5px;
+    transition: all 0.2 ease;
+    border: 0;
+    background-color: white;
+  }
+  
+  #empty {
+    padding: 5px;
+    margin-left: 30px;
+    border: 0;
+    background-color: white;
+  }
+  
+  #empty:hover,
+  #professional1:hover,
+  #professional2:hover,
+  #printy1:hover,
+  #printy2:hover,
+  #ideal:hover {
+    box-shadow: 3px 3px 3px #97020E;
+    transform: scale(1.05);
+  }
+  
+  .chooseOsnastka img {
+    transition: all 0.2s linear;
+    height: 170px;
+  }
+  
+  .itemQuality {
+    font-size: 30px;
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .itemQuality button {
+    margin: 10px;
+    border: none;
+    width: 50px;
+    font-size: 40px;
+    transition: all 0.1s linear;
+  }
+  
+  .itemQuality h3 {
+    padding: 0px 15px;
+  }
+  
+  #minus {
+    background-color: #97020E;
+    color: white;
+  }
+  
+  #plus {
+    background-color: #97020E;
+    color: white;
+  }
+  
+  #minus:hover,
+  #plus:hover {
+    background-color: #000;
+    color: white;
+  }
+  
+  .orderBtns button {
+    border: none;
+    padding: 5px;
+    width: 30%;
+    margin: 10px;
+    font-size: 30px;
+    transition: all 0.1s linear;
+  }
+  
+  #addToBasket,
+  #orderNow {
+    background-color: #97020E;
+    color: white;
+  }
+  
+  #addToBasket:hover,
+  #orderNow:hover {
+    background-color: #000;
+    color: white;
+  }
+  
+  .minus {
+    background-color: #97020E;
+    color: white;
+}
+
+.plus {
+    background-color: #97020E;
+    color: white;
+}
+
+.minus:hover,
+.plus:hover {
+    background-color: #000;
+    color: white;
+}
+
+.addToBasket {
+    background-color: #97020E;
+    color: white;
+}
+
+.addToBasket:hover {
+    background-color: #000;
+    color: white;
+}
+
+.chooseOsnastka button {
+    padding: 5px;
+    transition: all 0.2 ease;
+    border: 0;
+    background-color: white;
+    max-width: 250px;
+}
+
+.chooseOsnastka button:hover {
+    box-shadow: 3px 3px 3px #97020E;
+    transform: scale(1.05);
+}
+
+.priceStamp {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.priceOsn {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.priceRow {
+    display: flex;
+    flex-direction: row;
+}
+
+.image {
+  width: 550px;
+  height: 550px;
+}
+

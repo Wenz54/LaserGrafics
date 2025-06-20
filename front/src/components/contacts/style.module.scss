@@ -1,0 +1,206 @@
+/* Переменные для цветов */
+:root {
+    --primary-color: #97020E; /* Темно-красный/бордовый */
+    --dark-text-color: #000;  /* Черный */
+    --secondary-text-color: #333; /* Темно-серый */
+    --background-color: #fff; /* Белый */
+    --overlay-color: rgba(0, 0, 0, 0.5); /* Наложение для фона */
+    --light-text-on-dark: #fff; /* Белый текст на темном фоне */
+    --link-hover-bg: #97020E; /* Бордовый при наведении на ссылку */
+    --link-gradient-start: rgba(151, 2, 14, 0.5); /* Начало градиента для ссылки */
+}
+
+/* Общие стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Важно для адаптивности */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Современный шрифт */
+}
+
+body {
+    line-height: 1.6;
+    color: var(--secondary-text-color);
+    background-color: var(--background-color);
+}
+
+a {
+    text-decoration: none;
+    color: inherit; /* Ссылки наследуют цвет от родителя по умолчанию */
+}
+
+/* Общий контейнер страницы */
+.contactsPage {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Занимает всю высоту viewport */
+}
+
+main {
+    flex-grow: 1; /* Позволяет main занимать доступное пространство */
+    display: flex; /* Делаем main flex-контейнером */
+    flex-direction: column;
+}
+
+/* Секция с фоновым изображением */
+.contactInner {
+    flex-grow: 1; /* Занимает доступное пространство в main */
+    background-image: url('../../../public/resourses/prikol2.gif'); /* Убедитесь, что путь верен */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Центрируем контент вертикально */
+}
+
+/* Наложение для затемнения фона */
+.contactOverlay {
+    background-color: var(--overlay-color);
+    flex-grow: 1; /* Занимает всю высоту родителя (contactInner) */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Центрируем содержимое по горизонтали */
+    justify-content: center; /* Центрируем содержимое по вертикали */
+    padding: 40px 20px; /* Универсальный padding */
+}
+
+/* Внутренний контейнер для заголовка и колонок */
+.overlayInner {
+    max-width: 1000px; /* Ограничиваем ширину контента */
+    width: 100%;
+    text-align: center;
+}
+
+.overlayInner h2 {
+    color: var(--light-text-on-dark);
+    font-size: clamp(2.5rem, 6vw, 4rem); /* Адаптивный размер для главного заголовка */
+    margin-bottom: 40px; /* Отступ под главным заголовком */
+    font-weight: 600;
+}
+
+/* Контейнер для колонок со ссылками */
+.overlayColumns {
+    display: flex;
+    flex-wrap: wrap; /* Позволяет колонкам переноситься на новую строку */
+    justify-content: center; /* Центрируем колонки при переносе */
+    gap: 30px; /* Отступы между колонками */
+    width: 100%;
+    margin-top: 0; /* Уберем лишний margin-top */
+}
+
+/* Отдельная колонка со ссылками */
+.owColumn {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Центрируем элементы внутри колонки */
+    flex: 1 1 200px; /* Гибкий размер: может сжиматься, расти, минимальная ширина 200px */
+    min-width: 180px; /* Установим минимальную ширину */
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.4); /* Чуть более темный фон для колонок */
+    border-radius: 8px;
+}
+
+.owColumn h3 { /* Использовали h3 в JSX, стилизуем его */
+    color: var(--light-text-on-dark);
+    font-size: clamp(1.4rem, 3.5vw, 2rem); /* Адаптивный размер для подзаголовков */
+    margin-bottom: 20px; /* Отступ под заголовком категории */
+    font-weight: 500;
+}
+
+.contactOverlay a {
+    background-image: linear-gradient(to right, var(--link-gradient-start), transparent);
+    color: var(--light-text-on-dark);
+    margin: 5px 0; /* Отступы между ссылками */
+    padding: 8px 15px; /* Увеличим padding для удобства нажатия */
+    font-size: clamp(1rem, 2.5vw, 1.2rem); /* Адаптивный размер шрифта ссылки */
+    border-radius: 4px;
+    width: 100%; /* Занимают всю ширину колонки */
+    text-align: center;
+    transition: background-color 0.2s ease, transform 0.2s ease; /* Добавим transform для эффекта */
+}
+
+.contactOverlay a:hover {
+    background-color: var(--link-hover-bg);
+    transform: translateY(-2px); /* Легкий подъем при наведении */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Тень при наведении */
+}
+
+/* Медиа-запросы для адаптивности */
+
+/* Для планшетов (до 1024px) */
+@media (max-width: 1024px) {
+    .overlayInner h2 {
+        font-size: clamp(2rem, 5vw, 3.5rem);
+        margin-bottom: 30px;
+    }
+
+    .overlayColumns {
+        gap: 25px;
+    }
+
+    .owColumn {
+        flex: 1 1 220px; /* Чуть увеличим мин. ширину для планшетов */
+        padding: 18px;
+    }
+
+    .owColumn h3 {
+        font-size: clamp(1.2rem, 3vw, 1.8rem);
+        margin-bottom: 15px;
+    }
+
+    .contactOverlay a {
+        font-size: clamp(0.9rem, 2vw, 1.1rem);
+        padding: 7px 12px;
+    }
+}
+
+/* Для мобильных устройств (до 768px) */
+@media (max-width: 768px) {
+    .contactOverlay {
+        padding: 30px 15px;
+    }
+
+    .overlayInner h2 {
+        font-size: clamp(1.8rem, 8vw, 3rem); /* Больше на мобильных, чтобы было видно */
+        margin-bottom: 25px;
+    }
+
+    .overlayColumns {
+        flex-direction: column; /* Столбцы перестраиваются в одну колонку */
+        gap: 20px;
+        align-items: center; /* Центрируем колонки */
+    }
+
+    .owColumn {
+        width: 100%; /* Каждая колонка занимает всю ширину */
+        max-width: 350px; /* Ограничиваем, чтобы не выглядело слишком широким */
+        margin: 0 auto; /* Центрируем колонки */
+        padding: 15px;
+    }
+
+    .owColumn h3 {
+        font-size: clamp(1.1rem, 5vw, 1.6rem);
+        margin-bottom: 10px;
+    }
+
+    .contactOverlay a {
+        font-size: clamp(0.85rem, 4vw, 1rem);
+        padding: 6px 10px;
+    }
+}
+
+/* Для очень маленьких мобильных устройств (до 480px) */
+@media (max-width: 480px) {
+    .contactOverlay {
+        padding: 20px 10px;
+    }
+
+    .overlayInner h2 {
+        margin-bottom: 20px;
+    }
+
+    .overlayColumns {
+        gap: 15px;
+    }
+}

@@ -1,0 +1,75 @@
+.stuffUnit { 
+    width: 90%;
+    z-index: 200;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 30px auto;
+    width: 95%;
+    padding: 20px;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    transition: all 0.2s ease;
+}
+
+.stuffUnit:hover {
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 15px 25px, rgba(0, 0, 0, 0.23) 0px 25px 25px;
+}
+
+.image {
+    height: 80px;
+    width: 80px;
+    padding: 15px;
+}
+
+.nameAndDesc {
+    flex: 1;
+    padding-left: 30px;
+    font-size: 15px;
+}
+
+.nameAndDesc h2 {
+    background-color: #97020E;
+    color: #fff;
+    padding: 5px;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+}
+
+.price {
+    padding-left: 20px;
+    font-size: 18px;
+}
+
+.count {
+    padding-left: 20px;
+}
+
+.countInput {
+    padding: 5px;
+    font-size: 16px;
+    color: #fff;
+    background-color: black;
+    text-align: center;
+    border: none;
+    border-radius: 4px;
+}
+
+.deleteBtn {
+    margin-left: 20px;
+    font-size: 17px;
+    padding: 5px 10px;
+    background-color: #fff;
+    border: 1px solid #97020E;
+    color: #97020E;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.deleteBtn:hover {
+    background-color: #97020E;
+    color: white;
+}

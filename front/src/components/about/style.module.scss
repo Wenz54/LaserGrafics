@@ -1,0 +1,204 @@
+/* Переменные для цветов */
+:root {
+    --primary-color: #97020E; /* Темно-красный/бордовый */
+    --dark-text-color: #000;  /* Черный */
+    --secondary-text-color: #333; /* Темно-серый */
+    --background-color: #fff; /* Белый */
+    --overlay-color: rgba(0, 0, 0, 0.5); /* Наложение для фона */
+    --light-text-on-dark: #fff; /* Белый текст на темном фоне */
+}
+
+/* Общие стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Важно для адаптивности */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Современный шрифт */
+}
+
+body {
+    line-height: 1.6;
+    color: var(--secondary-text-color);
+    background-color: var(--background-color);
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+/* Основной контейнер страницы */
+.aboutPage {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Занимает всю высоту viewport */
+}
+
+/* Стили для main, чтобы занимал оставшееся пространство */
+main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Секция с фоновым изображением */
+.about__inner {
+    flex-grow: 1; /* Позволяет inner растягиваться */
+    background-image: url('../../../public/resourses/prikol1.gif');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Выравнивание элементов внутри */
+}
+
+/* Наложение для затемнения фона */
+.about__owerlay {
+    background-color: var(--overlay-color);
+    flex-grow: 1; /* Занимает всю высоту родителя (about__inner) */
+    padding: 40px 20px; /* Универсальный padding */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Распределяем текст и статистику */
+    max-width: 1200px; /* Ограничиваем ширину контента */
+    margin: 0 auto; /* Центрируем контент */
+}
+
+/* Блок с текстом "О компании" */
+.about__text {
+    max-width: 70%; /* Увеличим немного для лучшей читаемости на широких экранах */
+    margin-bottom: 50px; /* Отступ между текстом и статистикой */
+    align-self: flex-start; /* Выравнивание по левому краю */
+}
+
+.about__text h2 {
+    font-size: clamp(2rem, 5vw, 3.5rem); /* Более адекватный диапазон для заголовка */
+    color: var(--light-text-on-dark);
+    font-weight: 300; /* Более легкий шрифт, как и было */
+    margin-bottom: 20px; /* Отступ под заголовком */
+}
+
+.about__text p {
+    color: var(--light-text-on-dark);
+    font-size: clamp(0.9rem, 1.4vw, 1.2rem); /* Более адекватный диапазон для параграфа */
+    line-height: 1.8; /* Улучшенная высота строки для читаемости */
+}
+
+/* Секция статистики */
+.about__statistic {
+    display: flex;
+    flex-wrap: wrap; /* Позволяет элементам переноситься на новую строку */
+    justify-content: space-between; /* Распределяет столбцы по ширине */
+    gap: 30px; /* Отступы между столбцами */
+    width: 100%;
+}
+
+.statistic__column {
+    flex: 1 1 200px; /* Гибкий размер: может сжиматься, расти, минимальная ширина 200px */
+    padding: 25px;
+    background-color: rgba(0, 0, 0, 0.4); /* Чуть более темный фон для колонок */
+    border-radius: 8px;
+    text-align: center; /* Центрируем текст внутри колонки */
+    min-width: 200px; /* Минимальная ширина для колонки */
+}
+
+.statistic__column .barabulka { /* Убрал !important, так как это плохая практика */
+    font-size: clamp(2.5rem, 6vw, 4rem); /* Большие цифры */
+    color: var(--primary-color); /* Ваш основной цвет для акцента */
+    font-weight: bold; /* Сделаем цифры более заметными */
+    margin-bottom: 10px;
+    text-align: center; /* Центрируем, если это число */
+}
+
+.statistic__column p {
+    color: var(--light-text-on-dark);
+    font-size: clamp(0.85rem, 1.2vw, 1.1rem);
+    line-height: 1.5;
+}
+
+/* Медиа-запросы для адаптивности */
+
+/* Для планшетов (до 1024px) */
+@media (max-width: 1024px) {
+    .about__text {
+        max-width: 80%; /* Увеличим ширину текста */
+        margin-bottom: 40px;
+    }
+
+    .about__text h2 {
+        font-size: clamp(1.8rem, 4.5vw, 3rem);
+    }
+
+    .about__text p {
+        font-size: clamp(0.85rem, 1.3vw, 1.1rem);
+    }
+
+    .about__statistic {
+        justify-content: center; /* Центрируем столбцы, когда их меньше */
+    }
+
+    .statistic__column {
+        flex: 1 1 250px; /* Немного изменим гибкость */
+    }
+}
+
+/* Для мобильных устройств (до 768px) */
+@media (max-width: 768px) {
+    .about__owerlay {
+        padding: 30px 15px; /* Уменьшим padding на мобильных */
+    }
+
+    .about__text {
+        max-width: 100%; /* Занимает всю ширину */
+        margin-bottom: 30px;
+        text-align: center; /* Выравнивание текста по центру */
+    }
+
+    .about__text h2 {
+        font-size: clamp(1.6rem, 7vw, 2.5rem); /* Больше для мобильных */
+    }
+
+    .about__text p {
+        font-size: clamp(0.8rem, 3.5vw, 1rem); /* Больше для мобильных */
+    }
+
+    .about__statistic {
+        flex-direction: column; /* Столбцы перестраиваются в одну колонку */
+        gap: 20px;
+    }
+
+    .statistic__column {
+        width: 100%; /* Каждая колонка занимает всю ширину */
+        max-width: 350px; /* Ограничиваем, чтобы не выглядело слишком широким на узких экранах */
+        margin: 0 auto; /* Центрируем колонки */
+        padding: 20px;
+    }
+
+    .statistic__column .barabulka {
+        font-size: clamp(2rem, 10vw, 3rem); /* Оптимизируем размер для мобильных */
+    }
+
+    .statistic__column p {
+        font-size: clamp(0.8rem, 3.5vw, 1rem);
+    }
+}
+
+/* Для очень маленьких мобильных устройств (до 480px) */
+@media (max-width: 480px) {
+    .about__owerlay {
+        padding: 20px 10px;
+    }
+
+    .about__text h2 {
+        margin-bottom: 15px;
+    }
+
+    .about__statistic {
+        gap: 15px;
+    }
+
+    .statistic__column {
+        padding: 15px;
+    }
+}

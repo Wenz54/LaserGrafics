@@ -1,0 +1,258 @@
+/* Base styles and resets */
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box; /* Crucial for responsive layouts */
+}
+
+html, body, #root, .appWrapper {
+    height: 100%; /* Ensures all parent elements take full height */
+}
+
+body {
+    line-height: 1.6;
+    color: #333;
+    display: flex;
+    flex-direction: column; /* Allows footer to stick to the bottom */
+    min-height: 100vh; /* Ensures body takes full viewport height */
+    overflow-x: hidden; /* Prevents horizontal scroll */
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Main app wrapper */
+.appWrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensures wrapper takes full viewport height */
+}
+
+/* Main content area, pushes footer down */
+.mainContent {
+    flex-grow: 1; /* Allows main to take up available space */
+    padding: 20px 0; /* Add some vertical padding */
+    display: flex;
+    justify-content: center; /* Center content horizontally */
+    align-items: flex-start; /* Align content to the top */
+}
+
+/* Container for the cart page layout */
+.cartPageContainer {
+    display: flex;
+    flex-wrap: wrap; /* Allows sections to wrap on smaller screens */
+    gap: 30px; /* Space between left and right sections */
+    width: 95%; /* Responsive width */
+    max-width: 1200px; /* Max width for larger screens */
+    margin-top: clamp(80px, 10vw, 120px); /* Top margin, accounting for header */
+    margin-bottom: 50px; /* Space before footer */
+    align-items: flex-start; /* Align items to the top */
+}
+
+/* Left side: Cart items list */
+.cartItemsSection {
+    flex: 2; /* Takes up more space than the summary section */
+    min-width: 300px; /* Minimum width before wrapping */
+    background-color: #fff;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Contains child content */
+}
+
+.cartList {
+    list-style: none; /* Remove bullet points */
+    padding: 0;
+    margin: 0;
+    max-height: 70vh; /* Limit height for scrollability */
+    overflow-y: auto; /* Enable vertical scrolling if content overflows */
+    overflow-x: hidden; /* Hide horizontal overflow */
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Space between each StuffUnit */
+}
+
+.emptyCartMessage {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #888;
+    padding: 50px;
+}
+
+/* StuffUnit (individual cart item) styles - assuming this is a reusable component */
+/* These styles will apply to your StuffUnit component. Ensure StuffUnit's internal
+   structure aligns with these styles (e.g., having an image, title, price, quantity controls). */
+.stuffUnit {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Space out content within the item */
+    padding: 15px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    transition: all 0.2s ease;
+    background-color: #fff;
+    flex-wrap: wrap; /* Allow content inside StuffUnit to wrap */
+    gap: 15px; /* Space between elements inside StuffUnit */
+}
+
+/* Example internal StuffUnit elements (adjust these to match your actual StuffUnit JSX) */
+.stuffUnit__image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.stuffUnit__details {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.stuffUnit__name {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.stuffUnit__price {
+    font-size: 1rem;
+    color: #666;
+}
+
+.stuffUnit__quantityControls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.stuffUnit__quantityBtn {
+    background-color: #97020E;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s ease;
+}
+
+.stuffUnit__quantityBtn:hover {
+    background-color: #7a010b;
+}
+
+.stuffUnit__quantity {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.stuffUnit__deleteBtn {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.2s ease;
+}
+
+.stuffUnit__deleteBtn:hover {
+    background-color: #c82333;
+}
+
+
+/* Right side: Cart summary */
+.cartSummarySection {
+    flex: 1; /* Takes up less space */
+    min-width: 280px; /* Minimum width before wrapping */
+    background-color: #fff;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content horizontally */
+    text-align: center;
+    /* Adjustments for RightSide content, assuming it has specific internal elements */
+}
+
+/* Adjustments for RightSide content, which is passed as a child */
+.cartSummarySection h2 {
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    margin-bottom: 15px;
+    color: #000;
+}
+
+.cartSummarySection h3,
+.cartSummarySection p {
+    font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+    margin-bottom: 10px;
+}
+
+.cartSummarySection h5 {
+    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+    margin-top: 20px;
+    color: #97020E; /* Accent color for total price */
+}
+
+.cartSummarySection a { /* For a checkout button/link within RightSide */
+    font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.2s ease;
+    margin-top: 20px;
+    display: inline-block; /* Allows padding and margin */
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .cartPageContainer {
+        flex-direction: column; /* Stack sections vertically */
+        align-items: center; /* Center stacked sections */
+        padding: 20px; /* Adjust padding for smaller screens */
+    }
+
+    .cartItemsSection,
+    .cartSummarySection {
+        width: 100%; /* Take full width when stacked */
+        max-width: 500px; /* Limit max width for readability */
+        margin-bottom: 20px; /* Space between stacked sections */
+        min-width: unset; /* Remove min-width constraint */
+    }
+
+    .cartList {
+        max-height: 60vh; /* Adjust height for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .cartItemsSection,
+    .cartSummarySection {
+        padding: 15px;
+    }
+
+    .stuffUnit {
+        flex-direction: column; /* Stack elements inside StuffUnit */
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .stuffUnit__image {
+        margin-bottom: 10px;
+    }
+
+    .stuffUnit__quantityControls {
+        width: 100%; /* Take full width */
+        justify-content: center; /* Center quantity controls */
+        margin-top: 10px;
+    }
+}
