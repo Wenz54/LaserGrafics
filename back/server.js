@@ -11,12 +11,12 @@ app.use(express.json());
 // Во время разработки можно использовать `app.use(cors());`
 // Для продакшена лучше указать конкретный источник:
 app.use(cors({
-    origin: 'http://localhost:3000', // Укажите URL вашего React-приложения
+    origin: 'https://lasergrafics-2.onrender.com', // Укажите URL вашего React-приложения
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
-// Простейшее хранилище для корзины в памяти сервера
+// Простейшее хранилище для корзины в памяти серверач
 // В реальном приложении это была бы база данных (MongoDB, PostgreSQL и т.д.)
 let serverCart = [];
 
